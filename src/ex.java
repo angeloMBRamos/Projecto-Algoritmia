@@ -70,7 +70,7 @@ public class ex {
         //Declarar variáveis
         String line;
         int totalLines=0, i=0;
-        double totalSales=0, profit, totalProfit=0;
+        double totalSales=0, totalProfit=0;
 
         while (readFile.hasNextLine()) {
             readFile.nextLine();
@@ -113,8 +113,7 @@ public class ex {
 
         //Declarar variáveis
         String line, name="", email="";
-        int totalLines=0, i=0, contact=0, id=0;
-        double totalSales=0, profit, totalProfit=0;
+        int totalLines=0, i=0, contact=0;
 
         while (readFile.hasNextLine()) {
             readFile.nextLine();
@@ -213,24 +212,22 @@ public class ex {
             }
         }
         readFileAgain.close();
-
     }
 
 
-    public static void readFile(String pathFile) throws FileNotFoundException {
+    public static void mostExpensiveGame(String pathFile) throws FileNotFoundException {
 
         File file = new File(pathFile);
         Scanner readFile = new Scanner(file);
 
         String line;
-        int totalLines=0, i=0;
+        int totalLines = 0, i = 0;
 
         while (readFile.hasNextLine()) {
             readFile.nextLine();
             totalLines++;
         }
         readFile.close();
-        System.out.println("Total lines: " + totalLines);
 
         String[][] matrix = new String[totalLines][9];
 
@@ -250,20 +247,27 @@ public class ex {
             matrix[i][8] = itemsOfTheLine[8];
             i++;
         }
-        //Prints the matrix
-        for (int j = 0; j < matrix.length; j++) {
+
+        String nomeCliente="";
+        double mostExpensive = Float.parseFloat(matrix[0][8]);
+        for (int j = 1; j < matrix.length; j++) {
             for (int k = 0; k < matrix[0].length; k++) {
-                System.out.println("Matrix["+j+"]["+k+"]: " + matrix[j][k]);
+                if(Float.parseFloat(matrix[j][8]) > mostExpensive){
+                    mostExpensive = Float.parseFloat(matrix[j][8]);
+                    nomeCliente = matrix[j][2];
+                }
             }
-            System.out.println("");
         }
+        readFileAgain.close();
+        System.out.println("O jogo mais caro é: " + mostExpensive);
+        System.out.println("Os clientes que o compraram foram: " + nomeCliente);
     }
 
 
     public static void main(String[] args) {
 
         try {
-            editorInfo("GameStart.csv");
+            mostExpensiveGame("GameStart.csv");
         } catch (FileNotFoundException exc) {
             System.out.println("File not found!!");
         }
