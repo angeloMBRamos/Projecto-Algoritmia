@@ -11,11 +11,12 @@ public class ex {
         //Lê o ficheiro
         Scanner readFile = new Scanner(file);
         //Itera o ficheiro enquanto existe uma linha
-        while(readFile.hasNext()){
+        while (readFile.hasNext()) {
             System.out.println(readFile.nextLine());
         }
         readFile.close();
     }
+
     public static void numberOfSalesAndTotalSales(String pathFile) throws FileNotFoundException {
         //Abre o ficheiro
         File file = new File(pathFile);
@@ -24,7 +25,7 @@ public class ex {
 
         //Declarar variáveis
         String line;
-        int totalSalesNumber = 0, totalLines=0, i=0;
+        int totalSalesNumber = 0, totalLines = 0, i = 0;
         double totalSales = 0;
 
         while (readFile.hasNextLine()) {
@@ -53,7 +54,7 @@ public class ex {
         }
 
         for (int j = 1; j < matrix.length; j++) {
-            totalSales+=Double.parseDouble(matrix[j][8]);
+            totalSales += Double.parseDouble(matrix[j][8]);
             totalSalesNumber++;
         }
         readFileAgain.close();
@@ -69,8 +70,8 @@ public class ex {
 
         //Declarar variáveis
         String line;
-        int totalLines=0, i=0;
-        double totalSales=0, totalProfit=0;
+        int totalLines = 0, i = 0;
+        double totalSales = 0, totalProfit = 0;
 
         while (readFile.hasNextLine()) {
             readFile.nextLine();
@@ -98,13 +99,14 @@ public class ex {
         }
 
         for (int j = 1; j < matrix.length; j++) {
-            totalSales+=Double.parseDouble(matrix[j][8]);
-            totalProfit= totalSales * 0.10;
+            totalSales += Double.parseDouble(matrix[j][8]);
+            totalProfit = totalSales * 0.10;
         }
         readFileAgain.close();
         System.out.println("Total profit sales: " + totalProfit);
 
     }
+
     public static void clientInfo(String pathFile) throws FileNotFoundException {
         //Abre o ficheiro
         File file = new File(pathFile);
@@ -112,8 +114,8 @@ public class ex {
         Scanner readFile = new Scanner(file);
 
         //Declarar variáveis
-        String line, name="", email="";
-        int totalLines=0, i=0, contact=0;
+        String line, name = "", email = "";
+        int totalLines = 0, i = 0, contact = 0;
 
         while (readFile.hasNextLine()) {
             readFile.nextLine();
@@ -153,7 +155,7 @@ public class ex {
                     email = matrix[j][4];
                 }
             }
-            }
+        }
         readFileAgain.close();
         System.out.println("Name: " + name);
         System.out.println("contact: " + contact);
@@ -168,8 +170,8 @@ public class ex {
         Scanner readFile = new Scanner(file);
 
         //Declarar variáveis
-        String line, game="", gender="";
-        int totalLines=0, i=0;
+        String line, game = "", gender = "";
+        int totalLines = 0, i = 0;
 
         while (readFile.hasNextLine()) {
             readFile.nextLine();
@@ -196,21 +198,39 @@ public class ex {
             i++;
         }
 
+
+        String[] arrayJogos = new String[120];
+        int gamez = 0;
+        boolean gameFound = false;
         String editor;
+
         Scanner input = new Scanner(System.in);
         System.out.println("Enter editor name: ");
         editor = input.next();
 
-        for (int j = 1; j < matrix.length; j++) {
+         for (int j = 1; j < matrix.length; j++) {
             for (int k = 0; k < matrix[0].length; k++) {
                 if (matrix[j][5].equals(editor)) {
-                    gender = matrix[j][6];
-                    game = matrix[j][7];
+                gender = matrix[j][6];
+                game = matrix[j][7];
+
+                for (int l = 0; l < gamez; l++) {
+
+                    if (arrayJogos[l].equals(game)) {
+                        gameFound = true;
+                    }
+                    }
+                }
+
+                if (!gameFound) {
                     System.out.println("Gender: " + gender);
                     System.out.println("Game: " + game);
+                    arrayJogos[gamez] = game;
+                    gamez++;
                 }
             }
         }
+
         readFileAgain.close();
     }
 
@@ -267,7 +287,7 @@ public class ex {
     public static void main(String[] args) {
 
         try {
-            mostExpensiveGame("GameStart.csv");
+            editorInfo("GameStart.csv");
         } catch (FileNotFoundException exc) {
             System.out.println("File not found!!");
         }
