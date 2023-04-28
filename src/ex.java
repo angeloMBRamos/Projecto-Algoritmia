@@ -25,7 +25,7 @@ public class ex {
 
             Scanner readFileAgain = new Scanner(file);
 
-            readFileAgain.nextLine();
+           // readFileAgain.nextLine();
             while (readFileAgain.hasNextLine()) {
                 line = readFileAgain.nextLine();
                 String[] itemsOfTheLine = line.split(";");
@@ -34,30 +34,19 @@ public class ex {
             }
                 i++;
         }
-
-        for (int j = 0; j < matrix.length-1; j++) {
-            for (int k = 0; k < matrix[0].length; k++) {
-                System.out.println("Matrix["+j+"]["+k+"]: "+matrix[j][k]);
-            }
-            System.out.println("");
-        }
-        readFileAgain.close();
         return matrix;
-
     }
 
 
-    public static void readFileAndPrint(String pathFile) throws FileNotFoundException {
+    public static void readFileAndPrint(String[][] matrix) throws FileNotFoundException {
 
-        //Abre o ficheiro
-        File file = new File(pathFile);
-        //Lê o ficheiro
-        Scanner readFile = new Scanner(file);
-        //Itera o ficheiro enquanto existe uma linha
-        while (readFile.hasNext()) {
-            System.out.println(readFile.nextLine());
+        for (int j = 0; j < matrix.length - 1; j++) {
+            for (int k = 0; k < matrix[0].length; k++) {
+                //System.out.println("Matrix[" + j + "][" + k + "]: " + matrix[j][k]);
+                System.out.print(matrix[j][k]);
+            }
+            System.out.println();
         }
-        readFile.close();
     }
 
     public static void numberOfSalesAndTotalSales(String pathFile) throws FileNotFoundException {
@@ -285,7 +274,7 @@ public class ex {
     public static void main(String[] args) {
 
         try {
-            editorInfo(lerDados("GameStart.csv"));
+            readFileAndPrint(lerDados("GameStart.csv"));
         } catch (FileNotFoundException exc) {
             System.out.println("File not found!!");
         }
