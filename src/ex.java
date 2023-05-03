@@ -35,11 +35,9 @@ public class ex {
         while (readFile.hasNextLine()) {
             linha= readFile.nextLine();
             String[] itemsLinha =linha.split(";");
-            for (int i = 0; i < itemsLinha.length; i++) {
-                total+=Double.parseDouble(itemsLinha[8]);
-            }
+            total+=Double.parseDouble(itemsLinha[8]);
             quantTotalVenda++;
-        }
+            }
         readFile.close();
         DecimalFormat df = new DecimalFormat("#,###.00");
         System.out.println("Foram executadas um total de " + quantTotalVenda + " vendas.");
@@ -63,12 +61,9 @@ public class ex {
             linha= readFile.nextLine();
             //Array que vai conter cada linha do ficheiro
             String[] itemsLinha =linha.split(";");
-            //Ciclo for para iterar o array anterior
-            for (int i = 0; i < itemsLinha.length; i++) {
-                total+=Double.parseDouble(itemsLinha[8]);
-                lucro=total*0.10;
+            total+=Double.parseDouble(itemsLinha[8]);
+            lucro=total*0.10;
             }
-        }
         readFile.close();
         DecimalFormat df = new DecimalFormat("#,###.00");
         System.out.println("O lucro total das vendas foi de €" + df.format(lucro) + ".");
